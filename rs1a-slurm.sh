@@ -5,7 +5,11 @@
 #SBATCH --time=24:00:00   # walltime
 #SBATCH --ntasks=1   # number of processor cores (i.e. tasks)
 #SBATCH --nodes=1   # number of nodes
+<<<<<<< HEAD
 #SBATCH --cpus-per-task=10	# number of processors per task
+=======
+#SBATCH --cpus-per-task=5	# number of processors per task
+>>>>>>> upstream/main
 #SBATCH -J "rs1a"   # job name
 
 ## /SBATCH -p general # partition (queue)
@@ -19,6 +23,7 @@ import os; \
 import time; \
 t0 = time.time(); \
 print(time.localtime()); \
+<<<<<<< HEAD
 DPT.objects.processDirs(dirs=None, objtype=pyh.RPLSplit, channel=[*range(1,33)], SkipHPC=False, HPCScriptsDir = '/data/src/PyHipp/', SkipLFP=False, SkipHighPass=False, SkipSort=False); \
 DPT.objects.processDirs(dirs=['sessioneye/array01','session01/array01'], cmd='import PyHipp as pyh; import DataProcessingTools as DPT; DPT.objects.processDirs(None, pyh.RPLLFP, saveLevel=1); DPT.objects.processDirs(None, pyh.RPLHighPass, saveLevel=1);'); \
 os.chdir('session01/array01'); \
@@ -27,3 +32,10 @@ print(time.localtime()); \
 print(time.time()-t0);"
 
 aws sns publish --topic-arn arn:aws:sns:ap-southeast-1:998960944230:awsnotify --message "RPLS1aJobDone"
+=======
+DPT.objects.processDirs(dirs=None, objtype=pyh.RPLSplit, channel=[*range(1,33)], SkipHPC=False, HPCScriptsDir='/data/src/PyHipp/', SkipLFP=False, SkipHighPass=False, SkipSort=False); \
+print(time.localtime()); \
+print(time.time()-t0);"
+
+aws sns publish --topic-arn arn:aws:sns:ap-southeast-1:018084650241:awsnotify --message "RPLS1JobDone"
+>>>>>>> upstream/main
